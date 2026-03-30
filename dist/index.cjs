@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const e=require("./http-service-DqmwdbGE.cjs");exports.JitPdfEditor=e._sfc_main;exports.createHttpPdfEditorService=e.createHttpPdfEditorService;exports.createIndexedDbPdfEditorService=e.createIndexedDbPdfEditorService;exports.usePdfEditorSdk=e.usePdfEditorSdk;

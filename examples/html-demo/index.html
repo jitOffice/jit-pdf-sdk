@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jit PDF HTML Demo</title>
+    <link rel="stylesheet" href="../../dist/style.css?v=20260329-umd-fix" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        font-family:
+          "PingFang SC",
+          "Hiragino Sans GB",
+          "Microsoft YaHei",
+          sans-serif;
+        background: #eef5ff;
+      }
+
+      .shell {
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr);
+        height: 100%;
+      }
+
+      .toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 20px;
+        border-bottom: 1px solid #d9e7ff;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 251, 255, 0.92));
+        backdrop-filter: blur(14px);
+      }
+
+      .toolbar__brand {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .toolbar__brand strong {
+        color: #0958d9;
+        font-size: 16px;
+      }
+
+      .toolbar__brand span {
+        color: #5a7089;
+        font-size: 13px;
+      }
+
+      .toolbar__actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .toolbar button {
+        min-height: 36px;
+      }
+
+      .toolbar button {
+        padding: 0 14px;
+        border: 1px solid #1677ff;
+        border-radius: 12px;
+        background: #1677ff;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .toolbar button:hover {
+        background: #0958d9;
+        border-color: #0958d9;
+      }
+
+      .toolbar button.secondary {
+        background: #fff;
+        color: #0958d9;
+      }
+
+      .toolbar button.secondary:hover {
+        background: #eef5ff;
+      }
+
+      .toolbar__status {
+        color: #37526d;
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .upload-trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 40px;
+        padding: 0 16px;
+        border-radius: 14px;
+        border: 1px solid #1677ff;
+        background: #1677ff;
+        color: #fff;
+        cursor: pointer;
+        font-weight: 600;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          background 0.18s ease;
+      }
+
+      .upload-trigger:hover {
+        background: #0958d9;
+        box-shadow: 0 10px 24px rgba(22, 119, 255, 0.2);
+        transform: translateY(-1px);
+      }
+
+      .upload-trigger svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .hidden-input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+
+      #editor {
+        min-height: 0;
+      }
+
+      .empty {
+        display: grid;
+        place-items: center;
+        height: 100%;
+        color: #5a7089;
+        padding: 32px;
+      }
+
+      .empty-card {
+        display: grid;
+        gap: 16px;
+        justify-items: center;
+        width: min(560px, 100%);
+        padding: 40px 32px;
+        border: 1px solid #d9e7ff;
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at top, rgba(22, 119, 255, 0.12), transparent 56%),
+          rgba(255, 255, 255, 0.9);
+        box-shadow: 0 18px 48px rgba(9, 88, 217, 0.08);
+        text-align: center;
+      }
+
+      .empty-card__icon {
+        display: grid;
+        place-items: center;
+        width: 72px;
+        height: 72px;
+        border-radius: 24px;
+        background: linear-gradient(180deg, #1677ff, #0958d9);
+        box-shadow: 0 16px 32px rgba(22, 119, 255, 0.24);
+      }
+
+      .empty-card__icon svg {
+        width: 30px;
+        height: 30px;
+        fill: none;
+        stroke: #fff;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .empty-card h1 {
+        margin: 0;
+        color: #0f2742;
+        font-size: 24px;
+      }
+
+      .empty-card p {
+        margin: 0;
+        max-width: 420px;
+        line-height: 1.7;
+      }
+
+      .empty-card__actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .ghost-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        padding: 0 16px;
+        border-radius: 14px;
+        border: 1px solid #cfe0ff;
+        background: #fff;
+        color: #0958d9;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .ghost-link:hover {
+        background: #f3f8ff;
+      }
+
+      .drop-hint {
+        font-size: 12px;
+        color: #7a8ea6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="toolbar">
+        <div class="toolbar__brand">
+          <strong>Jit PDF HTML Demo</strong>
+          <span>适用于静态 HTML、传统系统和低耦合集成场景</span>
+        </div>
+        <div class="toolbar__actions">
+          <input
+            id="fileInput"
+            class="hidden-input"
+            type="file"
+            accept=".pdf,application/pdf"
+          />
+          <label for="fileInput" class="upload-trigger">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 16V5"></path>
+              <path d="M8 9l4-4 4 4"></path>
+              <path d="M5 19h14"></path>
+            </svg>
+            <span>上传 PDF</span>
+          </label>
+          <button id="resetBtn" class="secondary">清空预览</button>
+          <span id="status" class="toolbar__status">等待导入 PDF</span>
+        </div>
+      </div>
+      <div id="editor">
+        <div class="empty">
+          <div class="empty-card">
+            <div class="empty-card__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 3.5h6l4 4V20H8z"></path>
+                <path d="M14 3.5V8h4"></path>
+                <path d="M10 13h6"></path>
+                <path d="M10 16h4"></path>
+              </svg>
+            </div>
+            <h1>上传后立即预览</h1>
+            <p>选择本地 PDF 后，编辑器会自动挂载并进入预览。适合验证 UMD 直引、纯前端本地存储和零框架接入方式。</p>
+            <div class="empty-card__actions">
+              <label for="fileInput" class="upload-trigger">选择 PDF 文件</label>
+              <button id="emptyResetBtn" class="ghost-link" type="button">重置演示</button>
+            </div>
+            <div class="drop-hint">支持直接替换新的 PDF 继续测试</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../dist/jit-pdf.umd.js?v=20260329-umd-fix"></script>
+    <script>
+      const { createIndexedDbPdfEditorService, mountJitPdfEditor } = window.JitPdfSdk;
+      const fileInput = document.getElementById("fileInput");
+      const resetBtn = document.getElementById("resetBtn");
+      const emptyResetBtn = document.getElementById("emptyResetBtn");
+      const statusEl = document.getElementById("status");
+      const service = createIndexedDbPdfEditorService({
+        databaseName: "jit-pdf-html-demo"
+      });
+
+      let mounted = null;
+      const emptyHtml = document.getElementById("editor").innerHTML;
+
+      function setStatus(message) {
+        statusEl.textContent = message;
+      }
+
+      async function openSelectedFile() {
+        const file = fileInput.files && fileInput.files[0];
+
+        if (!file) {
+          setStatus("请先选择一个 PDF 文件");
+          return;
+        }
+
+        setStatus("正在导入本地工作区...");
+
+        try {
+          const uploaded = await service.uploadFile(file);
+
+          if (mounted) {
+            mounted.unmount();
+          }
+
+          mounted = mountJitPdfEditor({
+            target: "#editor",
+            source: {
+              type: "local",
+              fileId: uploaded.id,
+              name: uploaded.name
+            },
+            service,
+            locale: "zh-CN",
+            theme: "blue-enterprise",
+            onSaveSuccess(event) {
+              setStatus("副本已保存到：" + event.relativePath);
+            },
+            onLoadError(event) {
+              setStatus("加载失败：" + event.message);
+            }
+          });
+
+          setStatus("已打开：" + uploaded.name);
+        } catch (error) {
+          setStatus("导入失败：" + (error instanceof Error ? error.message : "未知错误"));
+        }
+      }
+
+      function resetEditor() {
+        if (mounted) {
+          mounted.unmount();
+          mounted = null;
+        }
+
+        document.getElementById("editor").innerHTML = emptyHtml;
+        fileInput.value = "";
+        setStatus("编辑器已卸载");
+        bindEmptyActions();
+      }
+
+      function bindEmptyActions() {
+        const nextEmptyResetBtn = document.getElementById("emptyResetBtn");
+        if (nextEmptyResetBtn) {
+          nextEmptyResetBtn.addEventListener("click", resetEditor);
+        }
+      }
+
+      fileInput.addEventListener("change", () => {
+        void openSelectedFile();
+      });
+
+      resetBtn.addEventListener("click", resetEditor);
+      bindEmptyActions();
+    </script>
+  </body>
+</html>
