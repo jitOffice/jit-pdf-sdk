@@ -2,7 +2,7 @@
 
 <div align="center">
 
-🎨 **企业级 PDF 在线预览与编辑 SDK** | 开箱即用 | 中文支持 | 批注脱敏 | 多框架集成
+🎨 **Enterprise PDF Preview & Editing SDK** | Ready to use | Chinese UI support | Annotation redaction | Multi-framework integration
 
 [![npm version](https://img.shields.io/npm/v/jit-pdf.svg?style=flat-square)](https://www.npmjs.com/package/jit-pdf)
 [![npm downloads](https://img.shields.io/npm/dm/jit-pdf.svg?style=flat-square)](https://www.npmjs.com/package/jit-pdf)
@@ -13,118 +13,124 @@
 [![Vue.js](https://img.shields.io/badge/Vue-3.5+-42b883.svg?style=flat-square&logo=vue.js)](https://vuejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8+-3178c6.svg?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 
-[快速开始](#快速开始) · [功能特性](#功能概览) · [接入示例](#快速开始) · [API 文档](#核心-api) · [示例代码](#示例与文档)
+[Quick Start](#quick-start) · [Feature Overview](#feature-overview) · [Integration Examples](#quick-start) · [API Docs](#core-api) · [Examples](#examples-and-docs)
 
 </div>
 
 ---
 
-## 📖 简介
+<a id="introduction"></a>
 
-**Jit PDF** 是一套面向业务系统的 **PDF 预览与编辑 SDK**，提供开箱即用的中文界面、蓝色主题工作台、批注与脱敏能力，以及本地存储和服务端文件服务两种接入模式。
+## 📖 Introduction
 
-它适合这些场景：
+**Jit PDF** is a **PDF preview and editing SDK** built for business systems. It provides a ready-to-use Chinese interface, a blue enterprise-style workspace, annotation and redaction capabilities, plus both local storage and server-backed file service integration modes.
 
-- 🏢 **OA / ERP / 电子档案 / 合同审阅** - 企业内部文档管理系统
-- 📝 **内部文档系统的 PDF 在线查看与批注** - 快速集成 PDF 工作能力
-- 🔧 **低代码平台、传统 JSP / Thymeleaf / PHP 页面中的嵌入式 PDF 工作台** - 兼容各种技术栈
-- 🎯 **Vue 项目、静态 HTML 页面，以及需要"挂载式"集成的多框架项目** - 灵活集成方式
+It fits scenarios like these:
 
-## ✨ 亮点
+- 🏢 **OA / ERP / digital archives / contract review** - internal enterprise document management systems
+- 📝 **Online PDF viewing and annotation in internal document systems** - quickly add PDF workflows
+- 🔧 **Embedded PDF workspaces in low-code platforms, traditional JSP / Thymeleaf / PHP pages** - compatible with a wide range of stacks
+- 🎯 **Vue projects, static HTML pages, and multi-framework apps that need mount-based integration** - flexible integration options
 
-- 🎨 **开箱即用的专业界面**：内置工具栏、缩略图导航、浮动属性面板、批注管理抽屉
-- 🇨🇳 **完整中文体验**：默认中文文案、蓝色主题、适合企业系统集成
-- ✏️ **常用编辑能力**：高亮、便签、自由文本、涂鸦、删除批注、批量管理批注
-- 🔍 **审阅与输出**：全文搜索、脱敏、另存副本、历史副本查看
-- 🚀 **大文件友好**：支持服务端 `Range` 流式读取，适配本地文件服务
-- 💾 **双存储模式**：支持纯前端 `IndexedDB` 模式，也支持 `NestJS` 文件服务模式
-- 🔌 **多接入形式**：支持 `npm` 引入、浏览器挂载入口、UMD `<script>` 直引
-- 📦 **零配置启动**：无需复杂配置，几分钟内即可集成到项目中
+## ✨ Highlights
 
-## 功能概览
+- 🎨 **Professional UI out of the box**: built-in toolbar, thumbnail navigation, floating property panel, and annotation management drawer
+- 🇨🇳 **Complete Chinese experience**: Chinese copy by default, blue theme, and enterprise-friendly presentation
+- ✏️ **Common editing tools**: highlight, sticky notes, free text, drawing, annotation deletion, and batch annotation management
+- 🔍 **Review and output workflows**: full-text search, redaction, save copy, and history version browsing
+- 🚀 **Large-file friendly**: supports server-side `Range` streaming and works well with local file services
+- 💾 **Dual storage modes**: supports pure frontend `IndexedDB` mode and `NestJS` file service mode
+- 🔌 **Multiple integration styles**: supports `npm`, browser mount entry, and direct UMD `<script>` usage
+- 📦 **Zero-config startup**: integrate into a project in just a few minutes
 
-### 预览能力
+<a id="feature-overview"></a>
 
-- 单页聚焦阅读与内部滚动
-- 多页文档缩略图导航
-- 页码同步、缩放、适应整页、适应页宽
-- 全文搜索与结果高亮
+## Feature Overview
 
-### 编辑与审阅
+### Preview Features
 
-- 文本高亮
-- 便签批注与内容编辑
-- 自由文本
-- 涂鸦
-- 删除选中批注
-- 批注管理面板
-- 批量删除批注
-- 脱敏框选与提交导出
+- Single-page focused reading with internal scrolling
+- Thumbnail navigation for multi-page documents
+- Page sync, zoom, fit-to-page, and fit-to-width
+- Full-text search with highlighted results
 
-### 数据与存储
+### Editing and Review
 
-- 本地 PDF 上传与 IndexedDB 存储
-- 批注快照持久化到 IndexedDB
-- 远程文件列表、元信息、历史副本读取
-- 本地文件服务流式预览与另存副本
+- Text highlighting
+- Sticky note annotations with content editing
+- Free text
+- Drawing
+- Delete selected annotations
+- Annotation management panel
+- Batch annotation deletion
+- Area-based redaction and export submission
 
-## 📦 安装
+### Data and Storage
 
-### 1. Vue / ESM 项目（推荐）
+- Local PDF upload with IndexedDB storage
+- Persistent annotation snapshots in IndexedDB
+- Remote file list, metadata, and history version retrieval
+- Streamed preview and save-copy support through a local file service
 
-如果你在 Vue 项目、React 项目、Angular 项目或其他基于打包器的项目中使用：
+## 📦 Installation
+
+### 1. Vue / ESM Projects (Recommended)
+
+If you are using Vue, React, Angular, or any other bundler-based project:
 
 ```bash
 pnpm add jit-pdf vue
-# 或使用 npm
+# or with npm
 npm install jit-pdf vue
-# 或使用 yarn
+# or with yarn
 yarn add jit-pdf vue
 ```
 
-说明：
+Notes:
 
-- `jit-pdf` 是对外发布包名
-- `vue` 是运行时依赖
-- 不需要额外安装 PDF 预览或批注相关第三方包
+- `jit-pdf` is the published package name
+- `vue` is a runtime dependency
+- No extra third-party PDF preview or annotation packages are required
 
-### 2. 纯 HTML / CDN 直引
+### 2. Plain HTML / CDN
 
-如果你在静态 HTML、传统后端模板页面里使用，可以直接引入 UMD 包：
+If you are using static HTML or traditional server-rendered template pages, you can include the UMD bundle directly:
 
 ```html
-<!-- 推荐使用 jsDelivr CDN -->
+<!-- jsDelivr CDN recommended -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jit-pdf@latest/dist/style.css" />
 <script src="https://cdn.jsdelivr.net/npm/jit-pdf@latest/dist/jit-pdf.umd.js"></script>
 
-<!-- 或使用 unpkg CDN -->
+<!-- or use unpkg -->
 <link rel="stylesheet" href="https://unpkg.com/jit-pdf@latest/dist/style.css" />
 <script src="https://unpkg.com/jit-pdf@latest/dist/jit-pdf.umd.js"></script>
 ```
 
-全局变量名为：
+The global variable name is:
 
 ```js
 window.JitPdfSdk
 ```
 
-### 3. 浏览器直接试用
+### 3. Try It Directly in the Browser
 
-你可以直接在浏览器中打开示例文件进行试用：
+You can open the example locally in your browser right away:
 
 ```bash
-# 克隆项目后
+# after cloning the project
 pnpm install
 pnpm dev
 ```
 
-访问 `http://localhost:5173` 即可查看完整演示。
+Visit `http://localhost:5173` to view the full demo.
 
-## 🚀 快速开始
+<a id="quick-start"></a>
 
-### Vue 3 项目接入（纯本地模式）
+## 🚀 Quick Start
 
-下面示例使用纯本地模式，不依赖服务端：
+### Integrate into a Vue 3 Project (Pure Local Mode)
+
+The example below uses pure local mode and does not rely on a backend service:
 
 ```vue
 <script setup lang="ts">
@@ -170,9 +176,9 @@ async function onFileChange(event: Event) {
 </template>
 ```
 
-### Vue 3 + 服务端文件模式（推荐生产环境）
+### Vue 3 + Server File Mode (Recommended for Production)
 
-如果你希望用本地文件服务、流式预览和副本保存：
+If you want local file service support, streamed preview, and copy saving:
 
 ```ts
 import { createHttpPdfEditorService } from "jit-pdf";
@@ -192,15 +198,15 @@ const service = createHttpPdfEditorService({
 />
 ```
 
-### 纯 HTML 页面接入（零框架依赖）
+### Plain HTML Integration (No Framework Dependency)
 
 ```html
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>Jit PDF Demo</title>
-    <!-- 使用 jsDelivr CDN -->
+    <!-- using jsDelivr CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jit-pdf@latest/dist/style.css" />
     <style>
       html, body, #app {
@@ -215,7 +221,7 @@ const service = createHttpPdfEditorService({
     </div>
     <div id="app" style="height: calc(100% - 48px)"></div>
 
-    <!-- 使用 jsDelivr CDN -->
+    <!-- using jsDelivr CDN -->
     <script src="https://cdn.jsdelivr.net/npm/jit-pdf@latest/dist/jit-pdf.umd.js"></script>
     <script>
       const { createIndexedDbPdfEditorService, mountJitPdfEditor } = window.JitPdfSdk;
@@ -252,13 +258,13 @@ const service = createHttpPdfEditorService({
 </html>
 ```
 
-### React / Angular / 任意框架项目（挂载式集成）
+### React / Angular / Any Framework (Mount-Based Integration)
 
-如果你不是 Vue 项目，但使用现代打包器，也可以通过浏览器挂载入口来集成：
+If your project is not built with Vue but uses a modern bundler, you can integrate through the browser mount entry:
 
 ```bash
 pnpm add jit-pdf vue
-# 或 npm install jit-pdf vue
+# or npm install jit-pdf vue
 ```
 
 ```tsx
@@ -298,53 +304,55 @@ export function PdfPanel({ fileId, fileName }: { fileId: string; fileName?: stri
 }
 ```
 
-适用范围：
+Applicable to:
 
 - React
-- Next.js 客户端组件
+- Next.js client components
 - Angular
-- Umi / Micro Frontends
-- 低代码平台自定义组件容器
+- Umi / micro frontends
+- Custom component containers in low-code platforms
 
-## 🗂️ 数据模式
+## 🗂️ Data Modes
 
-### 模式一：纯本地模式（推荐用于 POC/演示）
+### Mode 1: Pure Local Mode (Recommended for POCs / Demos)
 
-适合：
+Best for:
 
-- ✅ 无后端接入
-- ✅ 本地调研、POC、组件演示
-- ✅ 希望 PDF 与批注都保存在浏览器端
+- ✅ No backend integration
+- ✅ Local research, POCs, and component demos
+- ✅ Storing both PDFs and annotations in the browser
 
-使用：
+Usage:
 
 - `createIndexedDbPdfEditorService()`
-- 文件保存到 `IndexedDB`
-- 批注快照也保存到 `IndexedDB`
+- Files are stored in `IndexedDB`
+- Annotation snapshots are also stored in `IndexedDB`
 
-### 模式二：服务端文件模式（推荐用于生产环境）
+### Mode 2: Server File Mode (Recommended for Production)
 
-适合：
+Best for:
 
-- ✅ 本地文件目录预览
-- ✅ 大文件流式读取
-- ✅ 需要上传、删除、另存副本、历史副本
+- ✅ Local directory preview
+- ✅ Large-file streaming reads
+- ✅ Upload, delete, save copy, and version history workflows
 
-使用：
+Usage:
 
 - `createHttpPdfEditorService()`
-- 文件流通过 `/api/files/:id/content`
-- 批注默认仍保存在浏览器 IndexedDB，可按项目需要二次扩展为服务端持久化
+- File streams are served through `/api/files/:id/content`
+- Annotations are still stored in browser IndexedDB by default, and can be extended to server-side persistence as needed
 
-## 核心 API
+<a id="core-api"></a>
 
-### 组件入口
+## Core API
+
+### Component Entry
 
 ```ts
 import { JitPdfEditor } from "jit-pdf";
 ```
 
-### 服务工厂
+### Service Factories
 
 ```ts
 import {
@@ -353,13 +361,13 @@ import {
 } from "jit-pdf";
 ```
 
-### 浏览器挂载入口
+### Browser Mount Entry
 
 ```ts
 import { mountJitPdfEditor } from "jit-pdf/browser";
 ```
 
-### 常用类型
+### Common Types
 
 ```ts
 import type {
@@ -369,7 +377,7 @@ import type {
 } from "jit-pdf";
 ```
 
-## 对外类型
+## Public Types
 
 ### `PdfSource`
 
@@ -409,9 +417,9 @@ interface JitPdfEditorProps {
 }
 ```
 
-## 事件
+## Events
 
-`JitPdfEditor` 和 `mountJitPdfEditor()` 都支持这些生命周期事件：
+Both `JitPdfEditor` and `mountJitPdfEditor()` support the following lifecycle events:
 
 - `ready`
 - `dirty-change`
@@ -420,7 +428,7 @@ interface JitPdfEditorProps {
 - `save-error`
 - `load-error`
 
-浏览器挂载示例：
+Browser mount example:
 
 ```ts
 mountJitPdfEditor({
@@ -428,20 +436,20 @@ mountJitPdfEditor({
   source,
   service,
   onReady(event) {
-    console.log("文档已就绪", event.documentId);
+    console.log("Document ready", event.documentId);
   },
   onSaveSuccess(result) {
-    console.log("副本保存成功", result.relativePath);
+    console.log("Copy saved successfully", result.relativePath);
   },
   onLoadError(error) {
-    console.error("加载失败", error.message);
+    console.error("Load failed", error.message);
   }
 });
 ```
 
-## 打包产物
+## Build Outputs
 
-`packages/pdf-sdk` 会输出以下产物：
+`packages/pdf-sdk` generates the following artifacts:
 
 - `dist/index.js`
 - `dist/index.cjs`
@@ -450,175 +458,159 @@ mountJitPdfEditor({
 - `dist/jit-pdf.umd.js`
 - `dist/style.css`
 
-对应关系：
+Mapping:
 
-- `jit-pdf`：Vue / ESM / CJS 项目入口
-- `jit-pdf/browser`：挂载式入口
-- `jit-pdf/styles.css`：公共样式
-- UMD：适合 `<script>` 直引
+- `jit-pdf`: Vue / ESM / CJS project entry
+- `jit-pdf/browser`: mount-based entry
+- `jit-pdf/styles.css`: shared styles
+- UMD: suitable for direct `<script>` usage
 
-## 📚 示例与文档
+<a id="examples-and-docs"></a>
 
-仓库中已经提供了完整示例：
+## 📚 Examples and Docs
 
-- 📝 **Vue 接入示例**：[`packages/pdf-sdk/examples/vue-demo/App.vue`](packages/pdf-sdk/examples/vue-demo/App.vue)
-- 🌐 **HTML 接入示例**：[`packages/pdf-sdk/examples/html-demo/index.html`](packages/pdf-sdk/examples/html-demo/index.html)
-- 📖 **SDK 使用说明页**：[`apps/demo-web/public/sdk-guide.html`](apps/demo-web/public/sdk-guide.html)
+The repository already includes complete examples:
 
-## 🤝 贡献指南
+- 📝 **Vue integration example**: [`packages/pdf-sdk/examples/vue-demo/App.vue`](packages/pdf-sdk/examples/vue-demo/App.vue)
+- 🌐 **HTML integration example**: [`packages/pdf-sdk/examples/html-demo/index.html`](packages/pdf-sdk/examples/html-demo/index.html)
+- 📖 **SDK usage guide page**: [`apps/demo-web/public/sdk-guide.html`](apps/demo-web/public/sdk-guide.html)
 
-我们欢迎各种形式的贡献：
+## 🤝 Contributing
 
-- 🐛 报告 Bug 或提出问题
-- 💡 分享你的使用经验
-- 🔧 提交 Pull Request 改进代码
-- 📖 完善文档和示例
+Contributions of all kinds are welcome:
 
-## 📄 开源协议
+- 🐛 Report bugs or raise issues
+- 💡 Share your usage experience
+- 🔧 Submit pull requests to improve the code
+- 📖 Improve documentation and examples
+
+## 📄 License
 
 MIT License
 
-## 🔗 相关链接
+## 🔗 Related Links
 
-- [npm 主页](https://www.npmjs.com/package/jit-pdf)
-- [GitHub 仓库](https://github.com/MrXujiang/jit-pdf-sdk)
-- [EmbedPDF](https://github.com/embedpdf/embedpdf) - 底层 PDF 引擎
+- [npm package](https://www.npmjs.com/package/jit-pdf)
+- [GitHub repository](https://github.com/MrXujiang/jit-pdf-sdk)
 
 ---
 
 <div align="center">
 
-**Jit PDF** - 让 PDF 在线编辑更简单 ✨
+**Jit PDF** - Make online PDF editing simpler ✨
 
 Made with ❤️ by the Jit PDF Team
 
 </div>
 
-## 🏗️ Monorepo 结构
+## 🏗️ Monorepo Structure
 
 ```plaintext
 jit-pdf/
-├── apps/demo-web/              # 完整业务化演示应用
-│   └── 包含文件列表、上传、批注、脱敏、删除、历史副本
-├── apps/file-service/          # NestJS 本地文件服务
-│   └── 支持目录浏览、上传、删除、Range 流式读取、另存副本
-├── packages/pdf-sdk/           # SDK 本体（npm 包：jit-pdf）
-├── packages/shared/            # 共享 DTO、类型与错误定义
-└── documents/                  # 技术文档
+├── apps/demo-web/              # Full business-oriented demo app
+│   └── Includes file list, upload, annotation, redaction, deletion, and history copies
+├── apps/file-service/          # NestJS local file service
+│   └── Supports directory browsing, upload, delete, Range streaming, and save copy
+├── packages/pdf-sdk/           # SDK package itself (npm package: jit-pdf)
+├── packages/shared/            # Shared DTOs, types, and error definitions
+└── documents/                  # Technical documentation
 ```
 
-详细说明：
+Details:
 
-- **`apps/demo-web`** - 完整业务化演示应用，包含文件列表、上传、批注、脱敏、删除、历史副本
-- **`apps/file-service`** - NestJS 本地文件服务，支持目录浏览、上传、删除、Range 流式读取、另存副本
-- **`packages/pdf-sdk`** - SDK 本体，对外发布包名为 `jit-pdf`
-- **`packages/shared`** - 共享 DTO、类型与错误定义
+- **`apps/demo-web`** - Full business-oriented demo app with file list, upload, annotation, redaction, deletion, and history copies
+- **`apps/file-service`** - NestJS local file service supporting directory browsing, upload, delete, Range streaming, and save copy
+- **`packages/pdf-sdk`** - The SDK package published as `jit-pdf`
+- **`packages/shared`** - Shared DTOs, types, and error definitions
 
-## 🛠️ 本地开发
+## 🛠️ Local Development
 
-### 环境准备
+### Environment Setup
 
-确保已安装以下工具：
+Make sure the following tools are installed:
 
 - Node.js >= 18.x
 - pnpm >= 9.x
 
-### 快速启动
+### Quick Start
 
 ```bash
-# 安装依赖
+# install dependencies
 pnpm install
 
-# 启动开发服务器（同时启动文件服务和演示应用）
+# start the dev servers (file service + demo app)
 pnpm dev
 ```
 
-默认启动：
+Services started by default:
 
-- 🌐 **业务演示应用**：`http://localhost:5173`
-- 🔧 **文件服务**：`http://localhost:4000`
+- 🌐 **Demo application**: `http://localhost:5173`
+- 🔧 **File service**: `http://localhost:4000`
 
-### 其他常用命令
+### Other Common Commands
 
 ```bash
-# 构建所有子项目
+# build all projects
 pnpm build
 
-# 运行测试
+# run tests
 pnpm test
 
-# 单独构建 SDK 包
+# build only the SDK package
 pnpm --filter jit-pdf build
 
-# 单独开发文件服务
+# run only the file service in dev mode
 pnpm --filter @jit-pdf/file-service dev
 
-# 单独开发演示应用
+# run only the demo app in dev mode
 pnpm --filter @jit-pdf/demo-web dev
 ```
 
-### 自定义文件服务读取目录
+### Customize the File Service Root Directory
 
-如果你要指定文件服务读取目录：
+If you want to specify the directory used by the file service:
 
 ```bash
 PDF_ROOT_DIR=/absolute/path/to/pdfs pnpm --filter @jit-pdf/file-service dev
 ```
 
-### 构建产物
+### Build Artifacts
 
-SDK 打包后会生成以下文件：
+After building the SDK, the following files are generated:
 
 ```plaintext
 packages/pdf-sdk/dist/
-├── index.js          # ESM 入口
-├── index.cjs         # CommonJS 入口
-├── browser.js        # 浏览器挂载入口（ESM）
-├── browser.cjs       # 浏览器挂载入口（CommonJS）
-├── jit-pdf.umd.js    # UMD 版本（CDN 直引）
-└── style.css         # 样式文件
+├── index.js          # ESM entry
+├── index.cjs         # CommonJS entry
+├── browser.js        # Browser mount entry (ESM)
+├── browser.cjs       # Browser mount entry (CommonJS)
+├── jit-pdf.umd.js    # UMD build for direct CDN usage
+└── style.css         # Stylesheet
 ```
 
-对应关系：
+Mapping:
 
-- `jit-pdf`：Vue / ESM / CJS 项目入口
-- `jit-pdf/browser`：挂载式入口
-- `jit-pdf/styles.css`：公共样式
-- UMD：适合 `<script>` 直引
+- `jit-pdf`: Vue / ESM / CJS project entry
+- `jit-pdf/browser`: mount-based entry
+- `jit-pdf/styles.css`: shared styles
+- UMD: suitable for direct `<script>` usage
 
-## 🎯 落地建议
+## 🎯 Implementation Suggestions
 
-### 推荐接入路径
+### Recommended Adoption Path
 
-1. **🔍 调研或 PoC 阶段**
-   - 先用 `createIndexedDbPdfEditorService()` 走纯本地模式
-   - 快速验证功能，无需服务端支持
+1. **🔍 Research or PoC stage**
+   Use `createIndexedDbPdfEditorService()` first in pure local mode.
+   Quickly validate functionality without backend support.
 
-2. **🚀 联调阶段**
-   - 切换到 `createHttpPdfEditorService()` 对接文件服务
-   - 实现文件上传、下载、历史版本管理等能力
+2. **🚀 Integration stage**
+   Switch to `createHttpPdfEditorService()` to connect to the file service.
+   Implement upload, download, and history version management workflows.
 
-3. **🏠 Vue 项目**
-   - 优先直接使用 `JitPdfEditor` 组件
-   - 享受完整的 Vue 生态体验
+3. **🏠 Vue projects**
+   Prefer using the `JitPdfEditor` component directly.
+   This gives you the most complete Vue integration experience.
 
-4. **🔌 非 Vue 项目**
-   - 优先使用 `mountJitPdfEditor()` 或 UMD 直引模式
-   - React/Angular/低代码平台均适用
-
-### 典型应用场景
-
-如果你希望把它做成企业内部统一文档能力平台，当前这套 SDK 已经适合作为：
-
-- 📄 **合同预览与审阅底座** - 支持批注、脱敏、版本管理
-- 🧾 **发票 / 证明 / 附件查看器** - 快速集成 PDF 预览能力
-- 📚 **文档归档系统的 PDF 工作台** - 完整的编辑与管理能力
-- 🔧 **多项目复用的通用 PDF 组件** - 一次集成，多处复用
-
-### 最佳实践
-
-- ✅ **开发阶段**：使用纯本地模式，减少依赖
-- ✅ **测试阶段**：切换服务端模式，验证完整流程
-- ✅ **生产部署**：配合文件服务，实现完整功能
-- ✅ **性能优化**：大文件使用 Range 流式读取
-- ✅ **安全考虑**：敏感文件建议启用脱敏功能
+4. **🔌 Non-Vue projects**
+   Prefer `mountJitPdfEditor()` or direct UMD usage.
+   Suitable for React, Angular, and low-code platforms.
