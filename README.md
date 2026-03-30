@@ -19,6 +19,8 @@
 
 ---
 
+[中文文档](README.zh-CM.md)
+
 <a id="introduction"></a>
 
 ## 📖 Introduction
