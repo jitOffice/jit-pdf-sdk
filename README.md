@@ -19,7 +19,7 @@
 
 ---
 
-[中文文档](README.zh-CM.md)
+[中文文档](README.zh-CN.md)
 
 <a id="introduction"></a>
 
