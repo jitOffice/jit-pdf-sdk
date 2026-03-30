@@ -1,0 +1,82 @@
+{
+  "name": "jit-pdf",
+  "version": "0.1.4",
+  "description": "Enterprise PDF viewer and annotation SDK for Vue and browsers, with online preview, editing, redaction, UMD/CDN embedding, and IndexedDB or file-service integration.",
+  "keywords": [
+    "pdf",
+    "pdf-sdk",
+    "pdf-viewer",
+    "pdf-editor",
+    "pdf-annotation",
+    "pdf-redaction",
+    "online-pdf",
+    "document-review",
+    "document-management",
+    "enterprise",
+    "vue",
+    "vue3",
+    "browser",
+    "umd",
+    "cdn",
+    "indexeddb",
+    "sdk"
+  ],
+  "author": "alex_xu <xujiang156@163.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/MrXujiang/jit-pdf-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrXujiang/jit-pdf-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MrXujiang/jit-pdf-sdk/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/jit-pdf.umd.js",
+  "jsdelivr": "./dist/jit-pdf.umd.js",
+  "style": "./dist/style.css",
+  "files": [
+    "dist",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE",
+    "logo.png"
+  ],
+  "sideEffects": [
+    "*.css",
+    "./dist/style.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./browser": {
+      "types": "./dist/browser.d.ts",
+      "import": "./dist/browser.js",
+      "require": "./dist/browser.cjs"
+    },
+    "./styles.css": "./dist/style.css",
+    "./umd": "./dist/jit-pdf.umd.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "pack:check": "npm pack --dry-run"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "vue": "^3.5.13"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.13"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
